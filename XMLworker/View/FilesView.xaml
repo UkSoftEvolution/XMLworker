@@ -1,0 +1,104 @@
+﻿<Page x:Class="XMLworker.View.FilesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="XMLworker - Файлы">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <ProgressBar
+                IsIndeterminate="{Binding Indeterminate}"
+                Maximum="{Binding Maximum}"
+                Value="{Binding Count}"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="#FF2F6EA5"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <StackPanel VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Button
+                                    Style="{DynamicResource FuncButton}"
+                                    IsEnabled="{Binding EnabledButton}"
+                                    Command="{Binding Choose_Click}"
+                                    Content="Выбрать файл(ы)"
+                                    HorizontalAlignment="Stretch"
+                                    Height="50"/>
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <TextBlock
+                                    Foreground="{StaticResource Foreground.Second}"
+                                    Visibility="{Binding VisibilityText}"
+                                    FontFamily="{StaticResource Normal}"
+                                    FontSize="{StaticResource Standart}"
+                                    Text="{Binding Text}"
+                                    HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Button
+                                    Style="{DynamicResource FuncButton}"
+                                    Command="{Binding Next_Click}"
+                                    Visibility="{Binding VisiblityNext}"
+                                    HorizontalAlignment="Right"
+                                    x:Name="Next"
+                                    Height="50">
+                                    <Viewbox Width="45" Height="45">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" Fill="{Binding ElementName=Next, Path=Foreground}" />
+                                        </Canvas>
+                                    </Viewbox>
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid>
+                        <TextBlock
+                            Foreground="{StaticResource Foreground.Second}"
+                            Visibility="{Binding VisibilityText}"
+                            FontFamily="{StaticResource Normal}"
+                            FontSize="{StaticResource Standart}"
+                            Text="{Binding StringFormat=Записей: {0}, Path=CountData}"
+                            HorizontalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

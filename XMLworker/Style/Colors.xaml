@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="Background" Color="#FF18191D"/>
+    <SolidColorBrush x:Key="Background.Second" Color="#FF17212B"/>
+    <SolidColorBrush x:Key="Foreground" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="Foreground.Second" Color="#FF7F91A4"/>
+
+    <SolidColorBrush x:Key="WindowButton.Static.Background" Color="#FF18191D"/>
+    <SolidColorBrush x:Key="WindowButton.Static.Foreground" Color="#FF7F91A4"/>
+    <SolidColorBrush x:Key="WindowButton.MouseOver.Background" Color="#FF202227"/>
+    <SolidColorBrush x:Key="WindowButton.MouseOver.Background.Close" Color="#FFE92539"/>
+    <SolidColorBrush x:Key="WindowButton.MouseOver.Foreground" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="WindowButton.Pressed.Background" Color="#FF202227"/>
+    <SolidColorBrush x:Key="WindowButton.Pressed.Background.Close" Color="#FFE92539"/>
+    <SolidColorBrush x:Key="WindowButton.Pressed.Foreground" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="ExitButton.Static.Background" Color="#FF18191D"/>
+    <SolidColorBrush x:Key="ExitButton.Static.Foreground" Color="#FF3587F2"/>
+    <SolidColorBrush x:Key="ExitButton.Static.Foreground.Second" Color="#FFEC393A"/>
+    <SolidColorBrush x:Key="ExitButton.MouseOver.Background" Color="#FF1D2A39"/>
+    <SolidColorBrush x:Key="ExitButton.MouseOver.Background.Second" Color="#FF31242A"/>
+    <SolidColorBrush x:Key="ExitButton.Pressed.Background" Color="#FF223143"/>
+    <SolidColorBrush x:Key="ExitButton.Pressed.Background.Second" Color="#FF472A2E"/>
+
+    <SolidColorBrush x:Key="FuncButton.Static.Background" Color="#FF2F6EA5"/>
+    <SolidColorBrush x:Key="FuncButton.MouseOver.Background" Color="#FF3777AF"/>
+    <SolidColorBrush x:Key="FuncButton.Pressed.Background" Color="#FF3F80B9"/>
+    <SolidColorBrush x:Key="FuncButton.Disabled.Background" Color="#FF21629B"/>
+    <SolidColorBrush x:Key="FuncButton.Disabled.Foreground" Color="#FF7F91A4"/>
+</ResourceDictionary>

@@ -1,0 +1,173 @@
+﻿<Page x:Class="XMLworker.View.DataView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="XMLworker - Данные"
+      Name="data">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--HEADER-->
+        <Grid Grid.Row="0" IsEnabled="{Binding Enabled}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0">
+                <Button
+                    x:Name="Back"
+                    Style="{DynamicResource WindowButton}"
+                    Command="{Binding Back_Click}">
+                    <Viewbox Width="25" Height="25">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12M18,11H10L13.5,7.5L12.08,6.08L6.16,12L12.08,17.92L13.5,16.5L10,13H18V11Z" Fill="{Binding ElementName=Back, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+            </Grid>
+            
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Slider
+                        Grid.Row="0"
+                        x:Name="sliderMin"
+                        Minimum="{Binding Minimum}"
+                        Value="{Binding ValueSliderMin}"
+                        Style="{DynamicResource SliderStyle}"
+                        Maximum="{Binding ElementName=sliderMax, Path=Value}"
+                        Height="15"
+                        SmallChange="1"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True"/>
+
+                    <TextBlock
+                        Grid.Row="1"
+                        FontSize="10"
+                        HorizontalAlignment="Center"
+                        Foreground="{StaticResource Foreground.Second}"
+                        Text="{Binding StringFormat=Значение от: {0}, ElementName=sliderMin, Path=Value}"/>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Slider
+                        Grid.Row="0"
+                        x:Name="sliderMax"
+                        Maximum="{Binding Maximum}"
+                        Value="{Binding ValueSliderMax}"
+                        Style="{DynamicResource SliderStyle}"
+                        Minimum="{Binding ElementName=sliderMin, Path=Value}"
+                        Height="15"
+                        SmallChange="1"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True"/>
+
+                    <TextBlock
+                        Grid.Row="1"
+                        FontSize="10"
+                        HorizontalAlignment="Center"
+                        Foreground="{StaticResource Foreground.Second}"
+                        Text="{Binding StringFormat=Значение до: {0}, ElementName=sliderMax, Path=Value}"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Button
+                    x:Name="Ok"
+                    Style="{DynamicResource WindowButton}"
+                    Command="{Binding Ok_Click}">
+                    <Viewbox Width="25" Height="25">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" Fill="{Binding ElementName=Ok, Path=Foreground}" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+            </Grid>
+        </Grid>
+
+        <!--DO-->
+        <Grid Grid.Row="1">
+            <ProgressBar
+                IsIndeterminate="{Binding Indeterminate}"
+                Maximum="100"
+                Value="0"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Foreground="#FF2F6EA5"/>
+        </Grid>
+
+        <!--CONTENT-->
+        <Grid Grid.Row="2">
+            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Template="{DynamicResource ScrollViewerStyle}">
+                <ItemsControl ItemsSource="{Binding Documents}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="{StaticResource Background.Second}" Margin="0 2 0 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0" Margin="2 0 0 0">
+                                    <TextBlock
+                                        Foreground="{StaticResource Foreground}"
+                                        Text="{Binding Path=NameOrg}"
+                                        FontSize="11"/>
+                                </Grid>
+
+                                <Grid Grid.Row="1" Margin="2 2 2 0">
+                                    <Button
+                                        Style="{DynamicResource WindowButton}"
+                                        Background="{x:Null}"
+                                        Content="{Binding StringFormat=ИНН: {0}, Path=Inn}"
+                                        Command="{Binding INN_Click}"
+                                        CommandParameter="{Binding}"
+                                        FontSize="12"
+                                        HorizontalAlignment="Left"/>
+                                    <TextBlock
+                                        Foreground="{StaticResource Foreground.Second}"
+                                        Text="{Binding StringFormat=Количество работников: {0}, Path=Count}"
+                                        FontSize="12"
+                                        HorizontalAlignment="Right"/>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            
+            <StackPanel>
+                
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
