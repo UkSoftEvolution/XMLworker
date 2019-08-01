@@ -179,6 +179,9 @@ namespace XMLworker.ViewModel
                 OnPropertyChanged(nameof(text));
             }
         }
+        /// <summary>
+        /// Количество данных
+        /// </summary>
         public int CountData
         {
             get => countData;

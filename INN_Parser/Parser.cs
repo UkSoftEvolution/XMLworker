@@ -22,7 +22,7 @@ namespace INN_Parser
             string json = GET_Query(inn);
 
             if (json.Length == 0)
-                return "";
+                return "https://www.rusprofile.ru/";
             else
             {
                 information information = JSON_Deserialize(json);

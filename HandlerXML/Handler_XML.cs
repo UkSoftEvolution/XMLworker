@@ -1,8 +1,6 @@
-﻿using INN_Parser;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Threading;
 using System.Xml;
 
 namespace HandlerXML
@@ -36,10 +34,6 @@ namespace HandlerXML
                         {
                             documentModel.NameOrg = xmlChildNode.Attributes.GetNamedItem("НаимОрг").Value;
                             documentModel.Inn = xmlChildNode.Attributes.GetNamedItem("ИННЮЛ").Value;
-
-                            Parser parser = new Parser();
-                            documentModel.Url = parser.Search(documentModel.Inn);
-                            Thread.Sleep(500);
                         }
                         else
                             documentModel.Count = Convert.ToInt32(xmlChildNode.Attributes.GetNamedItem("КолРаб").Value);

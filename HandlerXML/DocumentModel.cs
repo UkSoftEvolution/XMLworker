@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using INN_Parser;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -22,10 +23,6 @@ namespace HandlerXML
         /// Количество работников
         /// </summary>
         public int Count { get; set; }
-        /// <summary>
-        /// Веб-сайт компании
-        /// </summary>
-        public string Url { get; set; }
         #endregion
 
         #region Commands
@@ -39,7 +36,10 @@ namespace HandlerXML
                 try
                 {
                     var element = obj as DocumentModel;
-                    Process.Start(element.Url);
+                    Parser parser = new Parser();
+                    var url = parser.Search(element.Inn);
+
+                    Process.Start(url);
                 }
                 catch
                 {
