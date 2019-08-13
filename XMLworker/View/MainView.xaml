@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="XMLworker" Height="600" Width="950" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Opacity="0.95" Foreground="{StaticResource Foreground}" Background="{StaticResource Background}" WindowState="{Binding State}">
 
+    <x:Code>
+        <![CDATA[
+        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e) 
+        {
+            try { DragMove(); }
+            catch { return; }
+        }
+        ]]>
+    </x:Code>
+    
     <Window.DataContext>
         <viewmodel:MainViewModel/>
     </Window.DataContext>
@@ -19,8 +29,8 @@
         </Grid.RowDefinitions>
 
         <!--HEADER-->
-        <Grid Grid.Row="0">
-            <Grid>
+        <Grid Grid.Row="0" >
+            <Grid Background="{StaticResource Background}" MouseLeftButtonDown="MouseLeftButtonDown">
                 <TextBlock
                     Text="XMLworker"
                     FontSize="{StaticResource Header}"
