@@ -9,7 +9,7 @@
 
     <x:Code>
         <![CDATA[
-        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e) 
+        private void LeftButtonDown(object sender, MouseButtonEventArgs e) 
         {
             try { DragMove(); }
             catch { return; }
@@ -30,7 +30,7 @@
 
         <!--HEADER-->
         <Grid Grid.Row="0" >
-            <Grid Background="{StaticResource Background}" MouseLeftButtonDown="MouseLeftButtonDown">
+            <Grid Background="{StaticResource Background}" MouseLeftButtonDown="LeftButtonDown">
                 <TextBlock
                     Text="XMLworker"
                     FontSize="{StaticResource Header}"
