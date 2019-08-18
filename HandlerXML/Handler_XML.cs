@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
-using System.Xml;
+using System.Xml.Serialization;
 
 namespace HandlerXML
 {
@@ -11,36 +10,28 @@ namespace HandlerXML
     public class Handler_XML
     {
         /// <summary>
-        /// Функция для обработки файла
+        /// Функция для десириализации XML файла
         /// </summary>
         /// <param name="path">Путь к файлу</param>
-        /// <param name="documents">Колекция данных</param>
-        /// <returns>Колекцию данных</returns>
-        public ObservableCollection<DocumentModel> Process(string path, ObservableCollection<DocumentModel> documents)
+        /// <param name="documents">Коллекция данных</param>
+        /// <returns>Коллекция данных</returns>
+        public ObservableCollection<xml.Document> DeserializeXML(string path, ObservableCollection<xml.Document> documents)
         {
             if (File.Exists(path))
             {
-                XmlDocument xmlDocument = new XmlDocument();
-                xmlDocument.Load(path);
+                XmlSerializer xmlSerializer  = new XmlSerializer(typeof(xml.File));
+                xml.File file;
 
-                XmlNodeList xmlNodeList = xmlDocument.DocumentElement.SelectNodes("Документ");
-                foreach(XmlNode xmlNode in xmlNodeList)
+                using (Stream reader = new FileStream(path, FileMode.Open))
                 {
-                    DocumentModel documentModel = new DocumentModel();
-
-                    foreach (XmlNode xmlChildNode in xmlNode.ChildNodes)
-                    {
-                        if (xmlChildNode.Name == "СведНП")
-                        {
-                            documentModel.NameOrg = xmlChildNode.Attributes.GetNamedItem("НаимОрг").Value;
-                            documentModel.Inn = xmlChildNode.Attributes.GetNamedItem("ИННЮЛ").Value;
-                        }
-                        else
-                            documentModel.Count = Convert.ToInt32(xmlChildNode.Attributes.GetNamedItem("КолРаб").Value);
-                    }
-
-                    documents.Add(documentModel);
+                    file = (xml.File)xmlSerializer.Deserialize(reader);
                 }
+
+                foreach (var item in file.Document)
+                {
+                    documents.Add(item);
+                }
+
                 return documents;
             }
             else

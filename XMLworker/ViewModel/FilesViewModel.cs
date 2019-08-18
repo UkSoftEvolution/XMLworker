@@ -1,5 +1,6 @@
 ﻿using FilesAPI;
 using HandlerXML;
+using HandlerXML.xml;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,7 +22,7 @@ namespace XMLworker.ViewModel
         private int count; //Количество обработанных файлов
         private int maximum; //Всего файлов для обработки
         private string text; //Текст подписи
-        private ObservableCollection<DocumentModel> documents; //Коллекция документов
+        private ObservableCollection<Document> documents; //Коллекция документов
         private MainViewModel mainVM; //Модель предствление главного окна
         private int countData; //Количество данных
         #endregion
@@ -65,14 +66,14 @@ namespace XMLworker.ViewModel
                 VisibilityText = Visibility.Visible;
                 VisiblityNext = Visibility.Hidden;
 
-                documents = new ObservableCollection<DocumentModel>();
+                documents = new ObservableCollection<Document>();
 
                 Task.Factory.StartNew(() =>
                 {
                     Handler_XML handler_XML = new Handler_XML();
                     foreach (string file in listFiles)
                     {
-                        documents = handler_XML.Process(file, documents);
+                        documents = handler_XML.DeserializeXML(file, documents);
                         CountData = documents.Count;
                         Count++;
                     }

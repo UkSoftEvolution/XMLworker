@@ -140,7 +140,7 @@
                                 <Grid Grid.Row="0" Margin="2 0 0 0">
                                     <TextBlock
                                         Foreground="{StaticResource Foreground}"
-                                        Text="{Binding Path=NameOrg}"
+                                        Text="{Binding Path=SwedNP.NaimOrg}"
                                         FontSize="11"/>
                                 </Grid>
 
@@ -148,14 +148,14 @@
                                     <Button
                                         Style="{DynamicResource WindowButton}"
                                         Background="{x:Null}"
-                                        Content="{Binding StringFormat=ИНН: {0}, Path=Inn}"
-                                        Command="{Binding INN_Click}"
+                                        Content="{Binding StringFormat=ИНН: {0}, Path=SwedNP.INNUL}"
+                                        Command="{Binding SwedNP.INN_Click}"
                                         CommandParameter="{Binding}"
                                         FontSize="12"
                                         HorizontalAlignment="Left"/>
                                     <TextBlock
                                         Foreground="{StaticResource Foreground.Second}"
-                                        Text="{Binding StringFormat=Количество работников: {0}, Path=Count}"
+                                        Text="{Binding StringFormat=Количество работников: {0}, Path=SwedSSHR.ColRab}"
                                         FontSize="12"
                                         HorizontalAlignment="Right"/>
                                 </Grid>

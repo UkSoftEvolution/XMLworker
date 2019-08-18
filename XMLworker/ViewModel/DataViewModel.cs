@@ -1,4 +1,5 @@
 ﻿using HandlerXML;
+using HandlerXML.xml;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace XMLworker.ViewModel
     public class DataViewModel : MVVM
     {
         #region Fields
-        private ObservableCollection<DocumentModel> documents; //Колекция документов
-        private ObservableCollection<DocumentModel> originalDocuments; //Колекция оригинальных документов
+        private ObservableCollection<Document> documents; //Колекция документов
+        private ObservableCollection<Document> originalDocuments; //Колекция оригинальных документов
         private MainViewModel mainVM; //Модель представление главного окна
         private bool indeterminate; //Отображение ожидания
         private bool enabled; //Доступность HEADER
@@ -33,7 +34,7 @@ namespace XMLworker.ViewModel
         /// </summary>
         /// <param name="mainVM">Модель представление главного окна</param>
         /// <param name="documents">Колекция документов</param>
-        public DataViewModel(MainViewModel mainVM, ObservableCollection<DocumentModel> documents)
+        public DataViewModel(MainViewModel mainVM, ObservableCollection<Document> documents)
         {
             this.mainVM = mainVM;
             originalDocuments = documents;
@@ -42,8 +43,8 @@ namespace XMLworker.ViewModel
             Indeterminate = false;
             Enabled = true;
 
-            Minimum = documents.Min(x => x.Count);
-            Maximum = documents.Max(x => x.Count);
+            Minimum = documents.Min(x => x.SwedSSHR.ColRab);
+            Maximum = documents.Max(x => x.SwedSSHR.ColRab);
             ValueSliderMin = Minimum;
             ValueSliderMax = Maximum;
         }
@@ -69,11 +70,11 @@ namespace XMLworker.ViewModel
                 Enabled = false;
                 Indeterminate = true;
 
-                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() => Documents = new ObservableCollection<DocumentModel>()));
+                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() => Documents = new ObservableCollection<Document>()));
                 
                 foreach (var doc in originalDocuments)
                 {
-                    if (doc.Count >= ValueSliderMin && doc.Count <= ValueSliderMax)
+                    if (doc.SwedSSHR.ColRab >= ValueSliderMin && doc.SwedSSHR.ColRab <= ValueSliderMax)
                         System.Windows.Application.Current.Dispatcher.Invoke(new Action(() => Documents.Add(doc)));
                     else
                         continue;
@@ -89,7 +90,7 @@ namespace XMLworker.ViewModel
         /// <summary>
         /// Колекция документов
         /// </summary>
-        public ObservableCollection<DocumentModel> Documents
+        public ObservableCollection<Document> Documents
         {
             get => documents;
             set

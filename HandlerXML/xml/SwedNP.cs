@@ -2,28 +2,26 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Serialization;
 
-namespace HandlerXML
+namespace HandlerXML.xml
 {
     /// <summary>
-    /// Модель для узла Документ
+    /// СведНП
     /// </summary>
-    public class DocumentModel
+    [XmlRoot(ElementName = "СведНП")]
+    public class SwedNP
     {
-        #region Fields
         /// <summary>
-        /// Наименование организации
+        /// НаимОрг
         /// </summary>
-        public string NameOrg { get; set; }
+        [XmlAttribute(AttributeName = "НаимОрг")]
+        public string NaimOrg { get; set; }
         /// <summary>
-        /// ИНН
+        /// ИННЮЛ
         /// </summary>
-        public string Inn { get; set; }
-        /// <summary>
-        /// Количество работников
-        /// </summary>
-        public int Count { get; set; }
-        #endregion
+        [XmlAttribute(AttributeName = "ИННЮЛ")]
+        public string INNUL { get; set; }
 
         #region Commands
         /// <summary>
@@ -35,9 +33,9 @@ namespace HandlerXML
             {
                 try
                 {
-                    var element = obj as DocumentModel;
+                    var element = obj as Document;
                     Parser parser = new Parser();
-                    var url = parser.Search(element.Inn);
+                    var url = parser.Search(element.SwedNP.INNUL);
 
                     Process.Start(url);
                 }

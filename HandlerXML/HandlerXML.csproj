@@ -44,10 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DocumentModel.cs" />
     <Compile Include="Handler_XML.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="xml\Document.cs" />
+    <Compile Include="xml\File.cs" />
+    <Compile Include="xml\SwedNP.cs" />
+    <Compile Include="xml\SwedSSHR.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\INN_Parser\INN_Parser.csproj">
