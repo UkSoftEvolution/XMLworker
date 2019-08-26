@@ -1,4 +1,5 @@
 ﻿using INN_Parser;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,9 +40,9 @@ namespace HandlerXML.xml
 
                     Process.Start(url);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не удалось открыть сайт", "Открытие сайта", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Не удалось открыть сайт: {ex.Message}", $"Открытие сайта: {ex.Source}", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });
         });

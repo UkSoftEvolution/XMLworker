@@ -26,8 +26,13 @@ namespace INN_Parser
             else
             {
                 information information = JSON_Deserialize(json);
-                var id = information.ul[0].url.Replace(@"\", "");
-                return $"https://www.rusprofile.ru{id}";
+                if (information.ul.Count == 0)
+                    return "https://www.rusprofile.ru/";
+                else
+                {
+                    var id = information.ul[0].url.Replace(@"\", "");
+                    return $"https://www.rusprofile.ru{id}";
+                }
             }
         }
         /// <summary>
