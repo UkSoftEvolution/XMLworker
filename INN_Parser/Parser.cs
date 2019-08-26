@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Web.Script.Serialization;
+using System.Windows;
 
 namespace INN_Parser
 {
@@ -43,6 +44,9 @@ namespace INN_Parser
         private string  GET_Query(string inn)
         {
             var webRequest = (HttpWebRequest)WebRequest.Create($"https://www.rusprofile.ru/ajax.php?&query={inn}&action=search");
+            webRequest.Method = "GET";
+            webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3";
+            webRequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3879.0 Safari/537.36 Edg/78.0.249.1";
             webRequest.MaximumAutomaticRedirections = 4;
             webRequest.MaximumResponseHeadersLength = 4;
 
