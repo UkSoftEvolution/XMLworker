@@ -45,8 +45,8 @@ namespace INN_Parser
         {
             var webRequest = (HttpWebRequest)WebRequest.Create($"https://www.rusprofile.ru/ajax.php?&query={inn}&action=search");
             webRequest.Method = "GET";
-            webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3";
-            webRequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3879.0 Safari/537.36 Edg/78.0.249.1";
+            webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
+            webRequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.0 Safari/537.36 Edg/80.0.361.5";
             webRequest.MaximumAutomaticRedirections = 4;
             webRequest.MaximumResponseHeadersLength = 4;
 

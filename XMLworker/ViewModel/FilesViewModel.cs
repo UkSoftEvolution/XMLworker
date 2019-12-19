@@ -78,6 +78,17 @@ namespace XMLworker.ViewModel
                         Count++;
                     }
 
+                    var edit = new ObservableCollection<Document>(documents);
+
+                    foreach (var value in edit)
+                    {
+                        if (!value.SwedNP.NaimOrg.ToLower().Contains("общество с ограниченной ответственностью"))
+                            documents.Remove(value);
+                        else
+                            continue;
+                    }
+                    CountData = documents.Count;
+
                     EnabledButton = true;
                     Text = "Обработано...";
                     VisiblityNext = Visibility.Visible;
