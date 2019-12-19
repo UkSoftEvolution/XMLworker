@@ -23,6 +23,14 @@ namespace HandlerXML.xml
         /// </summary>
         [XmlAttribute(AttributeName = "ИННЮЛ")]
         public string INNUL { get; set; }
+        /// <summary>
+        /// Вид деятельности
+        /// </summary>
+        public string okved_descr { get; set; }
+        /// <summary>
+        /// Дата регистрации
+        /// </summary>
+        public string reg_date { get; set; }
 
         #region Commands
         /// <summary>
