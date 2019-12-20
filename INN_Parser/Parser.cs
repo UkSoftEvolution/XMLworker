@@ -14,26 +14,33 @@ namespace INN_Parser
     {
         #region Function
         /// <summary>
-        /// Функция для поиска по ИНН
+        /// Функция для получения данных о компании
         /// </summary>
         /// <param name="inn">ИНН компании</param>
-        /// <returns>URL на карточку компании</returns>
-        public string Search(string inn)
+        /// <returns>Данные о компании</returns>
+        public information GetData(string inn)
         {
-            string json = GET_Query(inn);
+            var json = GET_Query(inn);
 
             if (json.Length == 0)
-                return "https://www.rusprofile.ru/";
+            {
+                if (MessageBoxResult.OK == MessageBox.Show("Сайт заблокировал доступ, пожалуйста, перейдите на сайт, пройдите капчу, после чего нажмите кнопку 'ОК'", "Капча", MessageBoxButton.OK, MessageBoxImage.Exclamation))
+                    return GetData(inn);
+
+                return GetData(inn);
+            }
             else
             {
-                information information = JSON_Deserialize(json);
+                var information = JSON_Deserialize(json);
                 if (information.ul.Count == 0)
-                    return "https://www.rusprofile.ru/";
-                else
                 {
-                    var id = information.ul[0].url.Replace(@"\", "");
-                    return $"https://www.rusprofile.ru{id}";
+                    if (MessageBoxResult.OK == MessageBox.Show("Сайт заблокировал доступ, пожалуйста, перейдите на сайт, пройдите капчу, после чего нажмите кнопку 'ОК'", "Капча", MessageBoxButton.OK, MessageBoxImage.Exclamation))
+                        return GetData(inn);
+
+                    return GetData(inn);
                 }
+                else
+                    return information;
             }
         }
         /// <summary>
@@ -43,7 +50,13 @@ namespace INN_Parser
         /// <returns>JSON ответ</returns>
         private string  GET_Query(string inn)
         {
+            WebHeaderCollection whc = new WebHeaderCollection
+            {
+                { "Cookie", "_ga=GA1.2.2145558115.1576784534; _gid=GA1.2.789566207.1576784534; _gat=1; _gat_UA-49620281-2=1; screen_for_ad=tablet" }
+            };
+
             var webRequest = (HttpWebRequest)WebRequest.Create($"https://www.rusprofile.ru/ajax.php?&query={inn}&action=search");
+            webRequest.Headers = whc;
             webRequest.Method = "GET";
             webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9";
             webRequest.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.0 Safari/537.36 Edg/80.0.361.5";
@@ -79,6 +92,5 @@ namespace INN_Parser
             return information;
         }
         #endregion
-
     }
 }

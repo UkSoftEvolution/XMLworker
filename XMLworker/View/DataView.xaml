@@ -163,7 +163,7 @@
                                         HorizontalAlignment="Left"/>
                                     <TextBlock
                                         Foreground="{StaticResource Foreground.Second}"
-                                        Text="{Binding StringFormat=Дата регистрации: {0}, Path=SwedSSHR.reg_date}"
+                                        Text="{Binding StringFormat=Дата регистрации: {0}, Path=SwedNP.reg_date}"
                                         FontSize="12"
                                         HorizontalAlignment="Center"/>
                                     <TextBlock

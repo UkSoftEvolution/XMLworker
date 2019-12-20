@@ -31,6 +31,10 @@ namespace HandlerXML.xml
         /// Дата регистрации
         /// </summary>
         public string reg_date { get; set; }
+        /// <summary>
+        /// Ссылка на ИНН
+        /// </summary>
+        public string linkINN { get; set; }
 
         #region Commands
         /// <summary>
@@ -42,11 +46,7 @@ namespace HandlerXML.xml
             {
                 try
                 {
-                    var element = obj as Document;
-                    Parser parser = new Parser();
-                    var url = parser.Search(element.SwedNP.INNUL);
-
-                    Process.Start(url);
+                    Process.Start(linkINN);
                 }
                 catch (Exception ex)
                 {

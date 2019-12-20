@@ -159,6 +159,10 @@
       <Project>{751accd4-90e5-4b6a-8927-cf8333e74f2c}</Project>
       <Name>HandlerXML</Name>
     </ProjectReference>
+    <ProjectReference Include="..\INN_Parser\INN_Parser.csproj">
+      <Project>{B3E00103-75D7-4DB7-BF57-1C340F422BFB}</Project>
+      <Name>INN_Parser</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ICONS.png" />
@@ -166,5 +170,6 @@
   <ItemGroup>
     <Resource Include="ICONS.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
