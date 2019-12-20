@@ -1,13 +1,12 @@
 ﻿using FilesAPI;
 using HandlerXML;
 using HandlerXML.xml;
-using INN_Parser;
 using System.Collections.ObjectModel;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using XMLworker.Other;
 using XMLworker.View;
+using Zachestnyibiznes_API;
 
 namespace XMLworker.ViewModel
 {
@@ -82,7 +81,7 @@ namespace XMLworker.ViewModel
 
                     var edit = new ObservableCollection<Document>(documents);
 
-                    var parser = new Parser();
+                    var pars = new Zachestnyibiznes();
                     Count = 0;
                     Maximum = edit.Count;
                     foreach (var value in edit)
@@ -94,15 +93,13 @@ namespace XMLworker.ViewModel
                         }
                         else
                         {
-                            var data = parser.GetData(value.SwedNP.INNUL);
+                            var parsData = pars.getData(value.SwedNP.INNUL);
 
-                            if (data != null && (data.ul[0].region == "Москва" || data.ul[0].region == "Санкт-Петербург" || data.ul[0].region == "Московская область" || data.ul[0].region == "Ленинградская область"))
+                            if (parsData != null && (parsData["address"] == "г Москва" || parsData["address"] == "Санкт-Петербург" || parsData["address"] == "Московская обл" || parsData["address"] == "Ленинградская обл"))
                             {
-                                documents[documents.IndexOf(value)].SwedNP.okved_descr = data.ul[0].okved_descr;
-                                var date = data.ul[0].reg_date.Split('-');
-                                documents[documents.IndexOf(value)].SwedNP.reg_date = $"{date[2]}/{date[1]}/{date[0]}";
-                                documents[documents.IndexOf(value)].SwedNP.linkINN = $"https://www.rusprofile.ru{data.ul[0].url.Replace(@"\", "")}";
-                                Thread.Sleep(1000);
+                                documents[documents.IndexOf(value)].SwedNP.okved_descr = parsData["okved_descr"];
+                                documents[documents.IndexOf(value)].SwedNP.reg_date = parsData["reg_date"];
+                                documents[documents.IndexOf(value)].SwedNP.linkINN = parsData["linkINN"];
                             }
                             else
                             {

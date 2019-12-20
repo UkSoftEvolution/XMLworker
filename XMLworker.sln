@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilesAPI", "FilesAPI\FilesA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandlerXML", "HandlerXML\HandlerXML.csproj", "{751ACCD4-90E5-4B6A-8927-CF8333E74F2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INN_Parser", "INN_Parser\INN_Parser.csproj", "{B3E00103-75D7-4DB7-BF57-1C340F422BFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zachestnyibiznes API", "Zachestnyibiznes API\Zachestnyibiznes API.csproj", "{746F09EA-067E-43CB-BAB1-377B400B86CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{751ACCD4-90E5-4B6A-8927-CF8333E74F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{751ACCD4-90E5-4B6A-8927-CF8333E74F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{751ACCD4-90E5-4B6A-8927-CF8333E74F2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3E00103-75D7-4DB7-BF57-1C340F422BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3E00103-75D7-4DB7-BF57-1C340F422BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3E00103-75D7-4DB7-BF57-1C340F422BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3E00103-75D7-4DB7-BF57-1C340F422BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{746F09EA-067E-43CB-BAB1-377B400B86CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{746F09EA-067E-43CB-BAB1-377B400B86CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{746F09EA-067E-43CB-BAB1-377B400B86CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{746F09EA-067E-43CB-BAB1-377B400B86CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
